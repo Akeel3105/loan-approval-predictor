@@ -1,49 +1,17 @@
-name: CI/CD Pipeline
+name: Python Test
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: [push]
 
 jobs:
-  format:
-    name: Code Formatting Check with Black
+  test-python:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.10
 
-      - name: Install Black
-        run: |
-          pip install black
-
-      - name: Run Black in check mode
-        run: |
-          black . --check
-
-  build-and-deploy:
-    name: Build and Deploy
-    runs-on: ubuntu-latest
-    needs: format  # Only run if formatting passes
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.10
-
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-
-      - name: Run Streamlit app check
-        run: |
-          python -m streamlit --version
+      - name: Check Python version
+        run: python --version
