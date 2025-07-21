@@ -3,4 +3,6 @@ streamlit==1.33.0
 pandas
 numpy
 joblib
+black==24.3.0
+
 
