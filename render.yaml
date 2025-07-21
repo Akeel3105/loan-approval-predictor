@@ -1,0 +1,8 @@
+# render.yaml
+
+services:
+  - type: web
+    name: loan-approval-app
+    env: docker
+    plan: free
+    autoDeploy: true
