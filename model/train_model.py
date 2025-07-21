@@ -15,7 +15,7 @@ df = pd.read_csv("data/train.csv")
 df.dropna(inplace=True)
 
 # Encoding categorical variables
-categorical_cols = ['Gender', 'Married', 'Education', 'Self_Employed', 'Property_Area']
+categorical_cols = ["Gender", "Married", "Education", "Self_Employed", "Property_Area"]
 encoders = {}
 for col in categorical_cols:
     le = LabelEncoder()
@@ -23,14 +23,27 @@ for col in categorical_cols:
     encoders[col] = le
 
 # Features and target
-X = df[['Gender', 'Married', 'Education', 'Self_Employed', 'ApplicantIncome',
-        'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term',
-        'Credit_History', 'Property_Area']]
+X = df[
+    [
+        "Gender",
+        "Married",
+        "Education",
+        "Self_Employed",
+        "ApplicantIncome",
+        "CoapplicantIncome",
+        "LoanAmount",
+        "Loan_Amount_Term",
+        "Credit_History",
+        "Property_Area",
+    ]
+]
 
-y = df['Loan_Status'].map({'Y': 1, 'N': 0})  # Target encoding
+y = df["Loan_Status"].map({"Y": 1, "N": 0})  # Target encoding
 
 # Train/Test Split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
 
 # Train model
 model = RandomForestClassifier(n_estimators=100, random_state=42)
